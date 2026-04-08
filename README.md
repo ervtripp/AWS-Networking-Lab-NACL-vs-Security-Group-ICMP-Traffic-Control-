@@ -1,4 +1,4 @@
-# 🔐 AWS Networking Lab: NACL vs Security Group (ICMP Traffic Control)
+# 🔐 AWS Networking Lab: Public & Private Subnet: Part 2 NACL vs Security Group (ICMP Traffic Control)
 
 ## 📘 Overview
 
