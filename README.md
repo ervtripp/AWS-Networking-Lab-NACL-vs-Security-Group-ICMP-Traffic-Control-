@@ -127,4 +127,4 @@ This demonstrated **layered network security** and the precedence of subnet-leve
 
 ## 🔥 Reflection
 
-In this lab, I intentionally avoided SSH and focused on ICMP to better understand how different protocols interact with AWS security layers. This helped reinforce how traffic is evaluated across multiple layers and how misconfigurations can impact connectivity.
+* In this lab, I intentionally avoided SSH and focused on ICMP to better understand how different protocols interact with AWS security layers. This helped reinforce how traffic is evaluated across multiple layers and how misconfigurations can impact connectivity.
