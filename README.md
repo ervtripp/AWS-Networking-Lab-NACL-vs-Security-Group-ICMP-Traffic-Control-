@@ -2,7 +2,7 @@
 
 ## 📘 Overview
 
-In this lab, I built a segmented AWS VPC with public and private subnets to demonstrate how **Network ACLs (NACLs)** can override **Security Group rules**.
+In this lab, I built a segmented AWS VPC with public and private subnets to demonstrate how **Network ACLs (NACLs)** can override **Security Group rules**. This is a continuation of a previous lab, solely to build a segmented AWS VPC with public and privates subnets.
 
 Instead of using SSH to validate connectivity, I used **ICMP (ping)** to test communication between EC2 instances. I then implemented a NACL rule to block ICMP traffic, proving that subnet-level controls take priority over instance-level permissions.
 
@@ -33,15 +33,13 @@ Instead of using SSH to validate connectivity, I used **ICMP (ping)** to test co
 
 From the public EC2 instance, I tested connectivity to the private EC2 using ICMP:
 
-```bash
-ping <PRIVATE-EC2-IP>
-```
-
 ✅ Result: Successful replies confirmed that:
 
 * Routing between subnets was functioning
 * Security Groups allowed ICMP traffic
 * Internal VPC communication was working
+<img src="https://res.cloudinary.com/dsz8pn2ym/image/upload/v1775666658/Screenshot_2026-04-07_112440_e7chpe.png" />
+
 
 ---
 
@@ -53,6 +51,7 @@ At this stage:
 * No restrictions were applied at the subnet level
 
 This meant traffic flowed freely between instances.
+<img src="https://res.cloudinary.com/dsz8pn2ym/image/upload/v1775394718/Screenshot_2026-04-05_091143_ghf49w.png" />
 
 ---
 
@@ -73,6 +72,8 @@ Instead of modifying Security Groups, I updated the existing NACL associated wit
 * Type: All ICMP - IPv4
 * Destination: `10.0.1.0/24`
 * Action: DENY
+<img src="https://res.cloudinary.com/dsz8pn2ym/image/upload/v1775666657/Screenshot_2026-04-07_114823_grcvnu.png" />
+
 
 ---
 
@@ -89,11 +90,9 @@ Network ACLs are **stateless**, meaning:
 
 After applying the NACL rules, I tested ICMP again:
 
-```bash
-ping <PRIVATE-EC2-IP>
-```
-
 ❌ Result: Request timed out
+<img src="https://res.cloudinary.com/dsz8pn2ym/image/upload/v1775666657/Screenshot_2026-04-07_114737_np4anl.png" />
+
 
 ---
 
@@ -125,25 +124,7 @@ This demonstrated **layered network security** and the precedence of subnet-leve
 * Protocol-level filtering (ICMP)
 * Understanding of stateless vs stateful networking
 
----
-
-## 📝 Resume Summary
-
-Implemented subnet-level traffic filtering using AWS Network ACLs to block ICMP communication between EC2 instances, demonstrating layered security controls and protocol-based traffic management within a VPC.
-
----
 
 ## 🔥 Reflection
 
 In this lab, I intentionally avoided SSH and focused on ICMP to better understand how different protocols interact with AWS security layers. This helped reinforce how traffic is evaluated across multiple layers and how misconfigurations can impact connectivity.
-
----
-
-## 📌 Next Steps
-
-* Allow HTTP while blocking ICMP
-* Test partial access between subnets
-* Introduce NAT Gateway and analyze outbound filtering
-* Perform packet flow troubleshooting scenarios
-
----
